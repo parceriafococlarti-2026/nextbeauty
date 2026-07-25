@@ -10,17 +10,20 @@ const EVENT_CONFIG = {
   regularCheckoutUrl: "",
   vipCheckoutUrl: "",
 
+  whatsappUrl: "https://wa.me/message/MA5N2SE3DIUHD1",
   whatsappNumber: "",
   whatsappMessage:
     "Olá! Gostaria de receber informações sobre o Next Beauty Experience 2026.",
 
   venueName: "Pousada do PC",
-  venueAddress: "",
+  venueAddress:
+    "Av. Geraldo Magela Rodrigues (RJ-186), 2936 — Jorge Assis de Oliveira (Asa Branca), Bom Jesus do Itabapoana — RJ, 28360-000",
   venueInstagram:
     "https://www.instagram.com/pousadadopc?igsh=MTF6ZGVlY3NoMmF5dg==",
-  mapUrl: "",
+  mapUrl: "https://maps.app.goo.gl/2ZE84LxtcVcPACSH6?g_st=ic",
 
-  instagramUrl: "",
+  instagramUrl:
+    "https://www.instagram.com/workshop.nextbeauty?igsh=MWRnYmRiaHlzdzRvYg%3D%3D&utm_source=qr",
   officialUrl: "",
 
   regularPrice: "",
@@ -79,6 +82,10 @@ function isUsableUrl(value) {
 }
 
 function buildWhatsAppUrl() {
+  if (isUsableUrl(EVENT_CONFIG.whatsappUrl)) {
+    return EVENT_CONFIG.whatsappUrl;
+  }
+
   const number = String(EVENT_CONFIG.whatsappNumber || "").replace(/\D/g, "");
   if (!number) return "";
 
@@ -716,7 +723,9 @@ function validateConfig() {
 
   if (!EVENT_CONFIG.regularCheckoutUrl) pending.push("regularCheckoutUrl");
   if (!EVENT_CONFIG.vipCheckoutUrl) pending.push("vipCheckoutUrl");
-  if (!EVENT_CONFIG.whatsappNumber) pending.push("whatsappNumber");
+  if (!EVENT_CONFIG.whatsappUrl && !EVENT_CONFIG.whatsappNumber) {
+    pending.push("whatsappUrl/whatsappNumber");
+  }
   if (!EVENT_CONFIG.regularPrice) pending.push("regularPrice");
   if (!EVENT_CONFIG.vipPrice) pending.push("vipPrice");
   if (!EVENT_CONFIG.instagramUrl) recommended.push("instagramUrl");

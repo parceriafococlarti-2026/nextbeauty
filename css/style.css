@@ -1732,6 +1732,22 @@ svg:not(.svg-sprite) {
   font-weight: 600;
 }
 
+.venue-map {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-light-beige);
+  box-shadow: 0 1.2rem 3rem rgba(43, 33, 24, 0.1);
+}
+
+.venue-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* O que inclui */
 .includes {
   background: var(--color-light-beige);
@@ -1743,7 +1759,7 @@ svg:not(.svg-sprite) {
   gap: 0.75rem;
 }
 
-.includes-grid span {
+.includes-item {
   display: grid;
   min-height: 8rem;
   align-content: center;
@@ -2377,6 +2393,10 @@ body.has-mobile-cta .whatsapp-float {
     aspect-ratio: 16 / 9;
   }
 
+  .venue-map {
+    aspect-ratio: 16 / 7;
+  }
+
   .venue-details {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
@@ -2403,7 +2423,7 @@ body.has-mobile-cta .whatsapp-float {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .includes-grid span {
+  .includes-item {
     min-height: 10rem;
     padding: 1.25rem;
   }

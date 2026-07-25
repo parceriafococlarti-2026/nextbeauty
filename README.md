@@ -33,15 +33,21 @@ Comportamento dos botões:
 2. Na falta de checkout, abrem o WhatsApp.
 3. Sem checkout e sem WhatsApp, rolam até a seção de ingressos e informam que os links serão liberados em breve.
 
-### Número do WhatsApp
+### WhatsApp
 
-Informe o número com DDI e DDD, de preferência apenas com dígitos:
+Para usar um link direto de contato, configure:
+
+```js
+whatsappUrl: "https://wa.me/message/SEU_CODIGO",
+```
+
+Como alternativa, informe o número com DDI e DDD, de preferência apenas com dígitos:
 
 ```js
 whatsappNumber: "5511999999999",
 ```
 
-Você também pode editar `whatsappMessage` no mesmo objeto.
+Quando `whatsappUrl` estiver preenchido, ele terá prioridade. Você também pode editar `whatsappMessage` no mesmo objeto para o formato baseado em número.
 
 ### Preços e parcelamento
 
@@ -149,7 +155,7 @@ instagramUrl: "https://www.instagram.com/perfil-do-evento",
 officialUrl: "https://dominio-oficial.com.br",
 ```
 
-O botão “Como chegar”, o Instagram oficial e a canonical só aparecem quando seus links estiverem configurados. Há um comentário no HTML lembrando que o endereço precisa ser confirmado antes da publicação.
+O botão “Como chegar” e o Instagram oficial só aparecem quando seus links estiverem configurados. O mapa incorporado fica na seção “Local”; mantenha o endereço do `src` do iframe em `index.html` alinhado com `mapUrl`. A canonical só é publicada quando a URL oficial estiver configurada.
 
 ## Contagem regressiva
 
