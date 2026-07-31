@@ -35,29 +35,35 @@ Comportamento dos botões:
 
 ### WhatsApp
 
-Para usar um link direto de contato, configure:
+Para usar mensagens personalizadas em cada ingresso, informe o número com DDI e
+DDD, apenas com dígitos:
+
+```js
+whatsappUrl: "",
+whatsappNumber: "5522992362477",
+whatsappMessage: "Mensagem do atendimento geral.",
+regularWhatsappMessage: "Mensagem do ingresso Regular.",
+vipWhatsappMessage: "Mensagem do ingresso Business VIP.",
+```
+
+Também é possível usar um link curto do WhatsApp Business:
 
 ```js
 whatsappUrl: "https://wa.me/message/SEU_CODIGO",
 ```
 
-Como alternativa, informe o número com DDI e DDD, de preferência apenas com dígitos:
-
-```js
-whatsappNumber: "5511999999999",
-```
-
-Quando `whatsappUrl` estiver preenchido, ele terá prioridade. Você também pode editar `whatsappMessage` no mesmo objeto para o formato baseado em número.
+Quando `whatsappUrl` estiver preenchido, ele terá prioridade, mas as mensagens
+personalizadas por ingresso deixam de ser aplicadas pelo site.
 
 ### Preços e parcelamento
 
 Os cards exibem “Em breve” enquanto os valores estiverem vazios. Para publicar os preços:
 
 ```js
-regularPrice: "R$ 297,00",
-regularInstallments: "ou 12x de R$ 29,70",
-vipPrice: "R$ 597,00",
-vipInstallments: "ou 12x de R$ 59,70",
+regularPrice: "R$ 247,00",
+regularInstallments: "",
+vipPrice: "R$ 347,00",
+vipInstallments: "",
 ```
 
 Use apenas valores e condições oficialmente definidos. Não inclua preços riscados ou descontos sem comprovação.

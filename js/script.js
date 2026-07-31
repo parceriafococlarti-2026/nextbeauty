@@ -10,10 +10,14 @@ const EVENT_CONFIG = {
   regularCheckoutUrl: "",
   vipCheckoutUrl: "",
 
-  whatsappUrl: "https://wa.me/message/MA5N2SE3DIUHD1",
-  whatsappNumber: "",
+  whatsappUrl: "",
+  whatsappNumber: "5522992362477",
   whatsappMessage:
     "Olá! Gostaria de receber informações sobre o Next Beauty Experience 2026.",
+  regularWhatsappMessage:
+    "Olá! Quero garantir meu ingresso Regular para o Next Beauty Experience 2026, com acesso ao dia 10, no valor de R$ 247,00. Pode me orientar sobre a inscrição?",
+  vipWhatsappMessage:
+    "Olá! Quero garantir meu ingresso Business VIP para o Next Beauty Experience 2026, com acesso aos dias 10 e 11, no valor de R$ 347,00. Pode me orientar sobre a inscrição?",
 
   venueName: "Pousada do PC",
   venueAddress:
@@ -26,9 +30,9 @@ const EVENT_CONFIG = {
     "https://www.instagram.com/workshop.nextbeauty?igsh=MWRnYmRiaHlzdzRvYg%3D%3D&utm_source=qr",
   officialUrl: "",
 
-  regularPrice: "",
+  regularPrice: "R$ 247,00",
   regularInstallments: "",
-  vipPrice: "",
+  vipPrice: "R$ 347,00",
   vipInstallments: "",
 
   speakersEnabled: false,
@@ -53,7 +57,7 @@ const EVENT_CONFIG = {
   venueState: "",
   eventImageUrl: "",
   currency: "BRL",
-  regularPriceNumeric: "",
+  regularPriceNumeric: "247.00",
   ticketAvailability: "",
 };
 
@@ -81,7 +85,7 @@ function isUsableUrl(value) {
   }
 }
 
-function buildWhatsAppUrl() {
+function buildWhatsAppUrl(message = EVENT_CONFIG.whatsappMessage) {
   if (isUsableUrl(EVENT_CONFIG.whatsappUrl)) {
     return EVENT_CONFIG.whatsappUrl;
   }
@@ -89,7 +93,7 @@ function buildWhatsAppUrl() {
   const number = String(EVENT_CONFIG.whatsappNumber || "").replace(/\D/g, "");
   if (!number) return "";
 
-  return `https://wa.me/${number}?text=${encodeURIComponent(EVENT_CONFIG.whatsappMessage)}`;
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
 function showNotice(message) {
@@ -147,7 +151,11 @@ function resolveCtaDestination(action) {
     return { type: "checkout", value: checkoutUrl };
   }
 
-  const whatsappUrl = buildWhatsAppUrl();
+  const whatsappMessage =
+    action === "vip"
+      ? EVENT_CONFIG.vipWhatsappMessage
+      : EVENT_CONFIG.regularWhatsappMessage;
+  const whatsappUrl = buildWhatsAppUrl(whatsappMessage);
   if (whatsappUrl) {
     return { type: "whatsapp", value: whatsappUrl };
   }
